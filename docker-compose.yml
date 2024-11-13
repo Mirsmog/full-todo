@@ -1,0 +1,26 @@
+services:
+  db:
+    image: postgres:15.2
+    restart: always
+    ports:
+      - 5432:5432
+    env_file:
+      - .env.local
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    ports:
+      - 5050:80
+    depends_on:
+      - db
+    env_file:
+      - .env.local
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+
+volumes:
+  postgres_data:
+  pgadmin_data:
