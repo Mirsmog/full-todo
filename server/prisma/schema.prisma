@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "__generated__"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_URI")
+}
+
+// TODO: implement avatar upload
+
+model User {
+  id           String @id @default(uuid())
+  name         String
+  email        String @unique
+  password     String
+  refreshToken String @unique
+  todos        Todo[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Todo {
+  id          String  @id @default(uuid())
+  userId      String
+  body        String
+  isCompleted Boolean @default(false)
+
+  User User @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
