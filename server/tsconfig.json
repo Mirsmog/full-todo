@@ -10,9 +10,11 @@
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
-    "@/*": ["src/*"],
-    "@/prisma/__generated__": ["prisma/__generated__"],
-    "@/prisma/__generated__/*": ["prisma/__generated__/*"],
+    "paths": {
+      "@/*": ["src/*"],
+      "@/prisma/__generated__": ["prisma/__generated__"],
+      "@/prisma/__generated__/*": ["prisma/__generated__/*"]
+    },
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": false,

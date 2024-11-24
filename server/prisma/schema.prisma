@@ -11,11 +11,11 @@ datasource db {
 // TODO: implement avatar upload
 
 model User {
-  id           String @id @default(uuid())
+  id           String  @id @default(uuid())
   name         String
-  email        String @unique
+  email        String  @unique
   password     String
-  refreshToken String @unique
+  refreshToken String? @unique
   todos        Todo[]
 
   createdAt DateTime @default(now())
